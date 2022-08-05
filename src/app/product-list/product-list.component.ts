@@ -10,8 +10,8 @@ export class ProductListComponent implements OnInit {
 
 
   // Product: any[];
-  @Input() Product: any[] | undefined;
-  @Input() x: number = 1;
+  @Input() Product: any | undefined;
+  @Input() quantity : number = 1;
   constructor(private ProductService: ProductService) { }
 
   ngOnInit(): void {
@@ -20,7 +20,6 @@ export class ProductListComponent implements OnInit {
     });
 
     console.log(this.Product);
-    
 
   }
 
@@ -44,5 +43,17 @@ export class ProductListComponent implements OnInit {
     }
   }
 
+  addToCart(id: number) {
+    const input = document.getElementById(''+id) as HTMLInputElement | null;
+
+    if (input != null) { 
+      console.log(input.value);
+    }
+    console.log(this.Product[id]);
+    // 
+    localStorage.setItem('product', JSON.stringify(this.Product[id]));
+  }
+
 
 }
+

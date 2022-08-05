@@ -1,1 +1,16 @@
 <p>cart works!</p>
+
+
+<div class="shoppe" *ngFor="let product of projucts">
+    <a routerLink="/product/{{product.id}}">
+        <div class="shoppe-image">
+            <img [src]="product.url" alt="">
+        </div>
+        <div class="shoppe-name">
+            {{product.name}}
+        </div>
+        <div class="shoppe-price">
+            $ {{product.price}}
+        </div>
+    </a> 
+</div>
