@@ -1,0 +1,14 @@
+
+    nav {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+    nav a {
+        text-decoration: none;
+        color: black;
+        background: #00bcd4;
+        color: #fff;
+        padding: 10px;
+        border-radius: 5px;
+    }

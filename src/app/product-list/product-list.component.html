@@ -1,47 +1,32 @@
-<nav>
-    <a routerLink="/product-list">Product List</a>
-    <a routerLink="/cart">cart </a>
-</nav>
+<app-header></app-header>
 
 <h1>Product List</h1>
 <div class="shoppes">
     <div class="shoppe" *ngFor="let product of Product">
-        <div class="shoppe-image">
-            <img [src]="product.url" alt="">
-        </div>
-        <div class="shoppe-name">
-            {{product.name}}
-        </div>
-        <div class="shoppe-price">
-            $ {{product.price}}
-        </div>
+        <a routerLink="product/{{product.id}}">
+            <div class="shoppe-image">
+                <img [src]="product.url" alt="">
+            </div>
+            <div class="shoppe-name">
+                {{product.name}}
+            </div>
+            <div class="shoppe-price">
+                $ {{product.price}}
+            </div>
+        </a>
         <div class="btns">
             <div class="upanddown">
-                <button>+</button>
-                <input type="number" value="1">
-                <button>-</button>
-            </div> 
-                <button class="addtocart">Add to cart</button>
+                <button (click)="up( product.id )">+</button>
+                <input id="{{product.id}}" type="number" value="1">
+                <button (click)="down(product.id)">-</button>
+            </div>
+            <button class="addtocart">Add to cart</button>
         </div>
     </div>
 </div>
 
 
 <style>
-    nav {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-    }
-    nav a {
-        text-decoration: none;
-        color: black;
-        background: #00bcd4;
-        color: #fff;
-        padding: 10px;
-        border-radius: 5px;
-    }
-
     .shoppes {
         display: flex;
         flex-wrap: wrap;
@@ -120,7 +105,8 @@
         display: flex;
         justify-content: space-between;
     }
-   .btns .addtocart {
+
+    .btns .addtocart {
         width: 300px;
         height: 50px;
         border: 1px solid #ccc;
