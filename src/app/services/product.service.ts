@@ -9,8 +9,9 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  getUsers(): Observable<[]> {
-    return this.http.get<[]>('https://jsonplaceholder.typicode.com/users');
+  getProduct(): Observable<[]> {
+    return this.http.get<[]>('assets/data.json');
   }
+  
 
 }
