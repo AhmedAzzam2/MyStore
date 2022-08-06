@@ -6,7 +6,17 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
+home
 ![](screenshot/screenshot.png)
+
+page
+![](screenshot/screenshot%20(2).png)
+
+cart
+![](screenshot/screenshot%20(3).png)
+
+total done
+![](screenshot/screenshot%20(4).png)
 
 ## Code scaffolding
 
