@@ -1,16 +1,35 @@
-<p>cart works!</p>
+<app-header></app-header>
 
 
-<div class="shoppe" *ngFor="let product of projucts">
-    <a routerLink="/product/{{product.id}}">
-        <div class="shoppe-image">
-            <img [src]="product.url" alt="">
+<div class="box">
+    <div class="cart">
+
+        <div class="shoppe" *ngFor="let product of projucts">
+            <a routerLink="/product/{{product.id}}">
+                <img [src]="product.url" alt="">
+            </a>
+            <div class="p">
+                <h3>{{product.name}}</h3>
+                <p>{{product.price}}</p>
+            </div>
+            <div class="btns">
+                <div class="upanddown">
+                    amount
+                    <button (click)="up( product.id )">+</button>
+                    <input id="{{product.id}}" type="number" value="{{product.quantity}}">
+                    <button (click)="down(product.id)">-</button>
+                </div>
+            </div>
         </div>
-        <div class="shoppe-name">
-            {{product.name}}
+        <div class="total">
+            <p>Total:  </p>
+    </div>
+</div>
+    <!-- form firstname lastname cart -->
+        <div class="form">
+                <input type="text" class="form-control" id="firstname" placeholder="Firstname">
+                <input type="text" class="form-control" id="lastname" placeholder="Lastname">
+                <input type="number" class="form-control" id="cart" placeholder="cart">
+            <button type="submit" class="btn btn-primary">Submit</button>
         </div>
-        <div class="shoppe-price">
-            $ {{product.price}}
-        </div>
-    </a> 
 </div>

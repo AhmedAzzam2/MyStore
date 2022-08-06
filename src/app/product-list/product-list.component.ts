@@ -11,7 +11,8 @@ export class ProductListComponent implements OnInit {
 
   // Product: any[];
   @Input() Product: any | undefined;
-  @Input() ProductApi: any[] = [];
+  @Input() ProductApi: any = JSON.parse(localStorage.getItem("product") || '{}');
+
   @Input() quantity : number = 1;
   constructor(private ProductService: ProductService) { }
 
@@ -48,15 +49,21 @@ export class ProductListComponent implements OnInit {
     const input = document.getElementById(''+id) as HTMLInputElement | null;
 
     if (input != null) { 
-      this.Product[id].quantity = parseInt(input.value, 10);
+      if (!this.ProductApi[id]) {
+        this.ProductApi[id] = this.Product[id];
+        this.ProductApi[id].quantity = parseInt(input.value, 10);
+      }
+      else {
+        this.ProductApi[id].quantity += parseInt(input.value, 10);
+      }
     }
     console.log(this.Product[id]);
-    
-    this.ProductApi.push(this.Product[id]); // ERROR TypeError: Cannot read properties of undefined (reading 'push')/
+   
+    // if is not in cart add to cart else update the quantity
+    localStorage.setItem("product", JSON.stringify(this.ProductApi));
     console.log(this.ProductApi);
     
 
-    localStorage.setItem('product', JSON.stringify(this.ProductApi));
   }
 
 

@@ -1,0 +1,82 @@
+.box{
+    background-color: #f2f2f2;
+    padding: 20px;
+    display: flex;
+
+}
+    .shoppe {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 10px;
+    }
+    .shoppe img {
+        width: 100px;
+        height: 100px;
+    }
+    .shoppe .p {
+        display: flex;
+        width: 144px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    
+    .btns {
+        background-color: #fff;
+        padding: 10px;
+        border-bottom-right-radius: 5px;
+        font-size: 1.2rem;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .btns button {
+        width: 50px;
+        height: 30px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+
+    .btns input {
+        width: 80px;
+        height: 30px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+        margin-right: 10px;
+    }
+
+    
+
+
+.form{
+    background-color: #f2f2f2;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.form input{
+    width: 200px;
+    height: 30px;
+    box-shadow: 0px 0px 15px #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    margin: 10px;
+}
+
+.form button{
+    width: 100px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    margin: 10px;
+}
