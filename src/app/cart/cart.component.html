@@ -28,7 +28,7 @@
 </div>
     <!-- form firstname lastname cart -->
         <div class="form">
-                <input type="text" #name id="firstname" placeholder="Firstname">
+                <input type="text" ngModel #name="ngModel" id="firstname" placeholder="Firstname">
                 <input type="text" class="form-control" id="lastname" placeholder="Lastname">
                 <input type="number" class="form-control" id="cart" placeholder="cart">
                 <input type="text" hidden #total value="{{ getTotal() }}">
