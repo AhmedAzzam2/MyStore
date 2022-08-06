@@ -25,7 +25,7 @@
                     <input id="{{Product.id}}" type="number" value="1">
                     <button (click)="down(Product.id)">-</button>
                 </div>
-                <button class="addtocart">Add to cart</button>
+                <button (click)="addToCart(Product.id)" class="addtocart">Add to cart</button>
             </div>
         </div>
 

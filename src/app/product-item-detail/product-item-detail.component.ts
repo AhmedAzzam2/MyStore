@@ -14,6 +14,8 @@ export class ProductItemDetailComponent implements OnInit {
 
   // Product: any[];
   @Input() Product: any | undefined;
+  @Input() ProductApi: any = JSON.parse(localStorage.getItem("product") || '{}');
+
   @Input() x: number = 1;
   myid: number | undefined;
   constructor(
@@ -24,14 +26,14 @@ export class ProductItemDetailComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.myid = Number(params.get('id'));
     })
-console.log(this.myid);
+    console.log(this.myid);
 
 
-this.ProductService.getProduct().subscribe(data => {
-  // get product by id find the product by id
-  this.Product =data.filter(({id}) => id === this.myid)[0];
-  console.log(this.Product);
-});
+    this.ProductService.getProduct().subscribe(data => {
+      // get product by id find the product by id
+      this.Product = data.filter(({ id }) => id === this.myid)[0];
+      console.log(this.Product);
+    });
 
 
   }
@@ -55,5 +57,28 @@ this.ProductService.getProduct().subscribe(data => {
       input.value = (value - 1).toString();
     }
   }
+
+
+  addToCart(id: number) {
+    const input = document.getElementById('' + id) as HTMLInputElement | null;
+
+    if (input != null) {
+      if (!this.ProductApi[id]) {
+        this.ProductApi[id] = this.Product[id];
+        this.ProductApi[id].quantity = parseInt(input.value, 10);
+      }
+      else {
+        this.ProductApi[id].quantity += parseInt(input.value, 10);
+      }
+    }
+    console.log(this.Product[id]);
+
+    // if is not in cart add to cart else update the quantity
+    localStorage.setItem("product", JSON.stringify(this.ProductApi));
+    console.log(this.ProductApi);
+
+
+  }
+
 
 }
