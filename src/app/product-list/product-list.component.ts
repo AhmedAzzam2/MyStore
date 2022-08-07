@@ -17,18 +17,27 @@ export class ProductListComponent implements OnInit {
   constructor(private ProductService: ProductService) { }
 
   ngOnInit(): void {
+    type Product = {
+      id: number;
+      name?: string;
+      price?: number;
+      quantity?: number;
+    };
+
     this.ProductService.getProduct().subscribe(data => {
       this.Product = data;
     });
 
 
   }
+  
 
   // function up number value by id and return the new value
   up(id: string) {
     // 👇️ const input: HTMLInputElement | null
     const input = document.getElementById(id) as HTMLInputElement | null;
 
+    
     if (input != null) {
       const value = parseInt(input.value, 10);
       input.value = (value + 1).toString();
@@ -73,3 +82,10 @@ export class ProductListComponent implements OnInit {
 
 }
 
+let ob = [
+  { id: 1, name: 'product 1', price: 100 },
+  { id: 2, name: 'product 2', price: 200 }, 
+  { id: 3, name: 'product 3', price: 300 },
+]
+
+let ob2 = ob.filter(({ id }) => id === 1)[0]; 
