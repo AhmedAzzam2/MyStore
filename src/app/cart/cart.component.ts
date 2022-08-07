@@ -66,4 +66,9 @@ console.log(id);
 
 
 
+  nameChanged(arg: any) {
+    console.log("good " + arg); 
+  }
+   
+
 }

@@ -1,7 +1,6 @@
 <app-header></app-header>
 
-
-<div class="box">
+<div *ngIf="projucts.length > 0" class="box">
     <div class="cart">
 
         <div class="shoppe" *ngFor="let product of projucts">
@@ -24,14 +23,23 @@
         <div class="total">
             <h2>Total: <span id="total">{{ getTotal() }}</span> </h2>
             <!-- loop projucts and get all  quantity and cal -->
+        </div>
+    </div>
+    <!-- form firstname lastname cart -->
+    <div class="form">
+        <input type="text" ngModel #name="ngModel" id="firstname" placeholder="Firstname">
+
+        <input type="text" class="form-control" id="lastname" placeholder="Lastname">
+        <input type="number"  ngModel (ngModelChange)="nameChanged($event)" placeholder="cart">
+        <input type="text" hidden #total value="{{ getTotal() }}">
+        <button type="submit" routerLink="/confirmation/{{name.value}}/{{total.value}}">Submit</button>
     </div>
 </div>
-    <!-- form firstname lastname cart -->
-        <div class="form">
-                <input type="text" ngModel #name="ngModel" id="firstname" placeholder="Firstname">
-                <input type="text" class="form-control" id="lastname" placeholder="Lastname">
-                <input type="number" class="form-control" id="cart" placeholder="cart">
-                <input type="text" hidden #total value="{{ getTotal() }}">
-            <button type="submit" routerLink="/confirmation/{{name.value}}/{{total.value}}">Submit</button>
-        </div>
+
+<div *ngIf="projucts.length == 0" class="box">
+
+    <div class="empty">
+        <h2>Your cart is empty</h2>
+        <p>You have no items in your cart. To buy one or more items, click on the "Add to cart" button next to the item.</p>
+    </div>
 </div>
