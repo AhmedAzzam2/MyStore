@@ -11,7 +11,7 @@ export class ProductListComponent implements OnInit {
 
   // Product: any[];
   @Input() Product: any | undefined;
-  @Input() ProductApi: any = JSON.parse(localStorage.getItem("product") || '{}');
+  @Input() ProductApi: any = JSON.parse(localStorage.getItem("product") || '[{}]');
 
   @Input() quantity: number = 1;
   constructor(private ProductService: ProductService) { }
@@ -64,8 +64,9 @@ export class ProductListComponent implements OnInit {
       console.log(g, "g");
 
       g.quantity = input.value; // add quantity to g[0]
-      this.ProductApi = this.ProductApi.filter((o: any) => o.id != id);
+      this.ProductApi = this.ProductApi.filter((o: any) => o.id != id) ;
       this.ProductApi.push(g);
+      this.ProductApi = this.ProductApi.filter((ele:any) => Object.keys(ele).length > 0)
 
 
     }

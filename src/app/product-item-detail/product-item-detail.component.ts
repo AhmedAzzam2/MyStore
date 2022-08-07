@@ -36,12 +36,11 @@ export class ProductItemDetailComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.myid = Number(params.get('id'));
     })
-    console.log(this.myid);
 
 
     this.ProductService.getProduct().subscribe(data => {
       // get product by id find the product by id
-      this.Product = data.filter(({ id }) => id === this.myid)[0];
+      this.Product = data.find(({ id }) => id === this.myid);
       console.log(this.Product);
     });
 
@@ -77,13 +76,15 @@ export class ProductItemDetailComponent implements OnInit {
     if (input != null) {
 
       alert('Add to cart success');
-      let g = this.Product.find((o: any) => o.id == id)
+      let g = this.Product;
       // add quantity object to g 
       console.log(g, "g");
 
       g.quantity = input.value; // add quantity to g[0]
       this.ProductApi = this.ProductApi.filter((o: any) => o.id != id);
       this.ProductApi.push(g);
+      this.ProductApi = this.ProductApi.filter((ele:any) => Object.keys(ele).length > 0)
+
 
 
     }
