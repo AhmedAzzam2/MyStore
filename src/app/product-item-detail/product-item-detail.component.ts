@@ -23,7 +23,7 @@ export class ProductItemDetailComponent implements OnInit {
 
 
   @Input() Product: any | undefined;
-  @Input() ProductApi: any = JSON.parse(localStorage.getItem("product") || '{}');
+  @Input() ProductApi: any = JSON.parse(localStorage.getItem("product") || '[{}]');
   @Output() addToCartEvent = new EventEmitter();
 
   @Input() x: number = 1;
