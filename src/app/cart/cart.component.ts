@@ -34,11 +34,6 @@ export class CartComponent implements OnInit {
       input.value = (value + 1).toString();
 
 
-      this.projucts.forEach((o: { id: string ,quantity:string }) => {
-        if (o.id != id) {
-          this.projucts.push({ id: id, quantity: (value + 1).toString() });
-        }
-      });
 
       this.projucts.forEach((o: { id: string ,quantity:string }) => {
         if (o.id === id) {
@@ -69,6 +64,7 @@ export class CartComponent implements OnInit {
       // remove item from projucts array 
       if (value == 1) {
         this.projucts = this.projucts.filter((o:any) => o.id != id);
+        localStorage.setItem("product", JSON.stringify(this.projucts));
       }
 
       this.projucts.forEach((o: { id: string ,quantity:string }) => {

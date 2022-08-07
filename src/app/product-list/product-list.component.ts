@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ProductService } from '../services/product.service';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-product-list',
@@ -14,7 +15,7 @@ export class ProductListComponent implements OnInit {
   @Input() ProductApi: any = JSON.parse(localStorage.getItem("product") || '[{}]');
 
   @Input() quantity: number = 1;
-  constructor(private ProductService: ProductService) { }
+  constructor(private ProductService: ProductService,private CartService:CartService) { }
 
   ngOnInit(): void {
     type Product = {
@@ -52,31 +53,9 @@ export class ProductListComponent implements OnInit {
       input.value = (value - 1).toString();
     }
   }
-
+ 
   addToCart(id: number) {
-    const input = document.getElementById('' + id) as HTMLInputElement | null;
-
-    if (input != null) {
-
-      alert('Add to cart success');
-      let g = this.Product.find((o: any) => o.id == id)
-      // add quantity object to g 
-      console.log(g, "g");
-
-      g.quantity = input.value; // add quantity to g[0]
-      this.ProductApi = this.ProductApi.filter((o: any) => o.id != id) ;
-      this.ProductApi.push(g);
-      this.ProductApi = this.ProductApi.filter((ele:any) => Object.keys(ele).length > 0)
-
-
-    }
-    console.log(this.Product[id]);
-
-    // if is not in cart add to cart else update the quantity
-    localStorage.setItem("product", JSON.stringify(this.ProductApi));
-    console.log(this.ProductApi);
-
-
+    this.CartService.addToCart(id,this.ProductApi,this.Product);
   }
 
 
