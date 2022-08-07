@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-cart',
@@ -21,19 +21,22 @@ export class CartComponent implements OnInit {
 
   }
 
-  
+
   // function up number value by id and return the new value
   up(id: string) {
     // 👇️ const input: HTMLInputElement | null
     const input = document.getElementById(id) as HTMLInputElement | null;
     const total = document.getElementById('total') as HTMLInputElement | null;
+console.log(id);
 
-    if (input != null) { 
+    if (input != null) {
       const value = parseInt(input.value, 10);
       input.value = (value + 1).toString();
       this.projucts[id].quantity = parseInt(input.value, 10);
+      console.log(this.projucts);
+      
     }
-    if (total != null) { 
+    if (total != null) {
       total.innerHTML = this.getTotal().toString();
     }
   }
@@ -41,17 +44,17 @@ export class CartComponent implements OnInit {
   down(id: string) {
     const input = document.getElementById(id) as HTMLInputElement | null;
     const total = document.getElementById('total') as HTMLInputElement | null;
-// if 0 then delete from projucts
-    if (input != null && input.value > '1') {  
+    // if 0 then delete from projucts
+    if (input != null && input.value > '1') {
       const value = parseInt(input.value, 10);
       input.value = (value - 1).toString();
       this.projucts[id].quantity = parseInt(input.value, 10);
     }
-    if (total != null) { 
+    if (total != null) {
       total.innerHTML = this.getTotal().toString();
     }
   }
-  
+
   // loop quantity in projucts and get the total
   getTotal() {
     let total = 0;
@@ -60,7 +63,7 @@ export class CartComponent implements OnInit {
     }
     return total;
   }
-  
-  
+
+
 
 }

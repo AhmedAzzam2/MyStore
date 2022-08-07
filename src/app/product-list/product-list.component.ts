@@ -13,7 +13,7 @@ export class ProductListComponent implements OnInit {
   @Input() Product: any | undefined;
   @Input() ProductApi: any = JSON.parse(localStorage.getItem("product") || '{}');
 
-  @Input() quantity : number = 1;
+  @Input() quantity: number = 1;
   constructor(private ProductService: ProductService) { }
 
   ngOnInit(): void {
@@ -21,7 +21,6 @@ export class ProductListComponent implements OnInit {
       this.Product = data;
     });
 
-    console.log(this.Product);
 
   }
 
@@ -30,7 +29,7 @@ export class ProductListComponent implements OnInit {
     // 👇️ const input: HTMLInputElement | null
     const input = document.getElementById(id) as HTMLInputElement | null;
 
-    if (input != null) { 
+    if (input != null) {
       const value = parseInt(input.value, 10);
       input.value = (value + 1).toString();
     }
@@ -39,16 +38,19 @@ export class ProductListComponent implements OnInit {
   down(id: string) {
     const input = document.getElementById(id) as HTMLInputElement | null;
 
-    if (input != null && input.value > '1') {  
+    if (input != null && input.value > '1') {
       const value = parseInt(input.value, 10);
       input.value = (value - 1).toString();
     }
   }
 
   addToCart(id: number) {
-    const input = document.getElementById(''+id) as HTMLInputElement | null;
+    const input = document.getElementById('' + id) as HTMLInputElement | null;
 
-    if (input != null) { 
+    if (input != null) {
+
+      alert('Add to cart success');
+
       if (!this.ProductApi[id]) {
         this.ProductApi[id] = this.Product[id];
         this.ProductApi[id].quantity = parseInt(input.value, 10);
@@ -56,13 +58,15 @@ export class ProductListComponent implements OnInit {
       else {
         this.ProductApi[id].quantity += parseInt(input.value, 10);
       }
+
+
     }
     console.log(this.Product[id]);
-   
+
     // if is not in cart add to cart else update the quantity
     localStorage.setItem("product", JSON.stringify(this.ProductApi));
     console.log(this.ProductApi);
-    
+
 
   }
 

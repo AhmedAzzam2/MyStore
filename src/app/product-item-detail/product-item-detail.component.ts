@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input,Output,EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../services/product.service';
 
@@ -13,8 +13,18 @@ export class ProductItemDetailComponent implements OnInit {
   // params.get('id'); 
 
   // Product: any[];
+  // {
+  //   "id": 4,
+  //   "name": "Glasses",
+  //   "price": 129.99,
+  //   "url": "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+  //   "description": "Now you can see!"
+  // },
+  
+
   @Input() Product: any | undefined;
   @Input() ProductApi: any = JSON.parse(localStorage.getItem("product") || '{}');
+@Output() addToCartEvent = new EventEmitter();
 
   @Input() x: number = 1;
   myid: number | undefined;
@@ -62,6 +72,8 @@ export class ProductItemDetailComponent implements OnInit {
   addToCart(id: number) {
     const input = document.getElementById('' + id) as HTMLInputElement | null;
 
+    this.addToCartEvent.emit('id');
+    alert('Add to cart success '+this.addToCartEvent);
     if (input != null) {
       if (!this.ProductApi[id]) {
         this.ProductApi[id] = this.Product[id];
