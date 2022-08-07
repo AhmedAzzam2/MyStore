@@ -17,7 +17,7 @@ export class CartComponent implements OnInit {
     // type 'object'. NgFor only supports binding to Iterables, such as Arrays
     this.projucts = Object.values(this.projucts);
 
-    console.log(this.projucts);
+    console.log(this.projucts, "projucts");
 
   }
 
@@ -27,30 +27,54 @@ export class CartComponent implements OnInit {
     // 👇️ const input: HTMLInputElement | null
     const input = document.getElementById(id) as HTMLInputElement | null;
     const total = document.getElementById('total') as HTMLInputElement | null;
-console.log(id);
+    console.log(id);
 
     if (input != null) {
       const value = parseInt(input.value, 10);
       input.value = (value + 1).toString();
-      this.projucts[id].quantity = parseInt(input.value, 10);
-      console.log(this.projucts);
-      
+
+
+
+      this.projucts.forEach((o: { id: string ,quantity:string }) => {
+        if (o.id === id) {
+          o.quantity = (value + 1).toString();
+          console.log(o);
+        }
+      });
+
+
     }
     if (total != null) {
+
       total.innerHTML = this.getTotal().toString();
     }
   }
 
   down(id: string) {
+    // 👇️ const input: HTMLInputElement | null
     const input = document.getElementById(id) as HTMLInputElement | null;
     const total = document.getElementById('total') as HTMLInputElement | null;
-    // if 0 then delete from projucts
-    if (input != null && input.value > '1') {
+    console.log(id);
+
+    if (input != null) {
       const value = parseInt(input.value, 10);
       input.value = (value - 1).toString();
-      this.projucts[id].quantity = parseInt(input.value, 10);
+
+
+
+      this.projucts.forEach((o: { id: string ,quantity:string }) => {
+        if (o.id === id) {
+          o.quantity = (value - 1).toString();
+          console.log(o);
+          
+        }
+      });
+      
+
+
     }
     if (total != null) {
+
       total.innerHTML = this.getTotal().toString();
     }
   }
@@ -67,8 +91,8 @@ console.log(id);
 
 
   nameChanged(arg: any) {
-    console.log("good " + arg); 
+    console.log("good " + arg);
   }
-   
+
 
 }

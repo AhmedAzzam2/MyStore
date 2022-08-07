@@ -36,7 +36,7 @@ export class ProductListComponent implements OnInit {
   up(id: string) {
     // 👇️ const input: HTMLInputElement | null
     const input = document.getElementById(id) as HTMLInputElement | null;
-
+     
     
     if (input != null) {
       const value = parseInt(input.value, 10);
