@@ -1,4 +1,4 @@
-import { Component, OnInit, Input,Output,EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../services/product.service';
 
@@ -20,11 +20,11 @@ export class ProductItemDetailComponent implements OnInit {
   //   "url": "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
   //   "description": "Now you can see!"
   // },
-  
+
 
   @Input() Product: any | undefined;
   @Input() ProductApi: any = JSON.parse(localStorage.getItem("product") || '{}');
-@Output() addToCartEvent = new EventEmitter();
+  @Output() addToCartEvent = new EventEmitter();
 
   @Input() x: number = 1;
   myid: number | undefined;
@@ -48,10 +48,13 @@ export class ProductItemDetailComponent implements OnInit {
 
   }
 
+
+
   // function up number value by id and return the new value
   up(id: string) {
     // 👇️ const input: HTMLInputElement | null
     const input = document.getElementById(id) as HTMLInputElement | null;
+
 
     if (input != null) {
       const value = parseInt(input.value, 10);
@@ -68,20 +71,21 @@ export class ProductItemDetailComponent implements OnInit {
     }
   }
 
-
   addToCart(id: number) {
     const input = document.getElementById('' + id) as HTMLInputElement | null;
 
-    this.addToCartEvent.emit('id');
-    alert('Add to cart success '+this.addToCartEvent);
     if (input != null) {
-      if (!this.ProductApi[id]) {
-        this.ProductApi[id] = this.Product[id];
-        this.ProductApi[id].quantity = parseInt(input.value, 10);
-      }
-      else {
-        this.ProductApi[id].quantity += parseInt(input.value, 10);
-      }
+
+      alert('Add to cart success');
+      let g = this.Product.find((o: any) => o.id == id)
+      // add quantity object to g 
+      console.log(g, "g");
+
+      g.quantity = input.value; // add quantity to g[0]
+      this.ProductApi = this.ProductApi.filter((o: any) => o.id != id);
+      this.ProductApi.push(g);
+
+
     }
     console.log(this.Product[id]);
 

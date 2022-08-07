@@ -30,14 +30,14 @@ export class ProductListComponent implements OnInit {
 
 
   }
-  
+
 
   // function up number value by id and return the new value
   up(id: string) {
     // 👇️ const input: HTMLInputElement | null
     const input = document.getElementById(id) as HTMLInputElement | null;
-     
-    
+
+
     if (input != null) {
       const value = parseInt(input.value, 10);
       input.value = (value + 1).toString();
@@ -59,14 +59,13 @@ export class ProductListComponent implements OnInit {
     if (input != null) {
 
       alert('Add to cart success');
+      let g = this.Product.find((o: any) => o.id == id)
+      // add quantity object to g 
+      console.log(g, "g");
 
-      if (!this.ProductApi[id]) {
-        this.ProductApi[id] = this.Product[id];
-        this.ProductApi[id].quantity = parseInt(input.value, 10);
-      }
-      else {
-        this.ProductApi[id].quantity += parseInt(input.value, 10);
-      }
+      g.quantity = input.value; // add quantity to g[0]
+      this.ProductApi = this.ProductApi.filter((o: any) => o.id != id);
+      this.ProductApi.push(g);
 
 
     }
@@ -82,10 +81,3 @@ export class ProductListComponent implements OnInit {
 
 }
 
-let ob = [
-  { id: 1, name: 'product 1', price: 100 },
-  { id: 2, name: 'product 2', price: 200 }, 
-  { id: 3, name: 'product 3', price: 300 },
-]
-
-let ob2 = ob.filter(({ id }) => id === 1)[0]; 
