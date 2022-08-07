@@ -26,28 +26,36 @@
         </div>
     </div>
     <!-- form firstname lastname cart -->
-    <!-- Input forms are validated.
 
-    The input fields must show an error message if value entered by user is not valid.
-    Validate all input fields for required, min length and input type. -->
 
-    <div class="form">
-        <input type="text" required ngModel #name="ngModel" id="firstname" placeholder="Firstname">
+    <form #form="ngForm" (ngSubmit)="onSubmit()" class="form">
+        <div>
+            <input type="text" name="first" required minlength="4" [(ngModel)]="first" #firstName="ngModel" placeholder="firstName">
+            <div *ngIf="firstName.errors?.['required']">First Name is required</div>
+            <div *ngIf="firstName.errors?.['minlength']">min letter 4</div>
 
-        <input type="text" required class="form-control" id="lastname" placeholder="Lastname">
-        <input type="number" required ngModel (ngModelChange)="nameChanged($event)" placeholder="cart">
-        <input type="text" hidden #total value="{{ getTotal() }}">
-        if fill all form show button and routerLink
-        <button *ngIf="name.valid" routerLink="/confirmation/{{name.value}}/{{total.value}}">Submit</button>
-        <button type="submit" class="btn btn-primary" [disabled]="!name.valid" [hidden]="name.valid">Submit</button>
-    </div>
+        </div>
+
+        <div>
+            <input type="text" name="last" required minlength="4" [(ngModel)]="last" #lastName="ngModel" placeholder="lastName">
+            <div *ngIf="lastName.errors?.['required']">Last Name is required</div>
+            <div *ngIf="firstName.errors?.['minlength']">min letter 4</div>
+        </div>
+        <div>
+            <input type="number" name="number" required minlength="14" [(ngModel)]="number" #num="ngModel" placeholder="Number Cart">
+            <div *ngIf="num.errors?.['required']">Number is required</div>
+            <div *ngIf="num.errors?.['minlength']">card number 14</div>
+        </div>
+
+        <button type="submit" [disabled]="form.invalid">Submit</button>
+    </form>
+
 </div>
 
 <div *ngIf="projucts.length == 0" class="box">
 
     <div class="empty">
         <h2>Your cart is empty</h2>
-        <p>You have no items in your cart. To buy one or more items, click on the "Add to cart" button next to the item.
-        </p>
+        <p>You have no items in your cart. To buy one or more items, click on the "Add to cart" button next to the item.</p>
     </div>
 </div>

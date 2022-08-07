@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -10,7 +11,8 @@ export class CartComponent implements OnInit {
   @Input() ProductApi: any = JSON.parse(localStorage.getItem("product") || '{}');
 
 
-  constructor() { }
+  constructor(private router: Router) {
+  }
 
   ngOnInit(): void {
     this.projucts = JSON.parse(localStorage.getItem("product") || '{}');
@@ -99,5 +101,22 @@ export class CartComponent implements OnInit {
     console.log("good " + arg);
   }
 
+  first: string = '';
+  last: string = '';
+  firstName: string = '';
+  lastName: string = '';
+  number: string = '';
+  blogTitle: string = 'My First Blog';
+  blogContent: string = ''; 
+  public: boolean = false;
+
+  username: string | undefined;
+  onSubmit(): void {
+    alert(`${this.first} has successfully signed in!`);
+    // this.router.navigate by this.router.navigate(['/']);
+    this.router.navigate([`/confirmation/${this.first}/${this.last}`]);
+  
+
+  }
 
 }
