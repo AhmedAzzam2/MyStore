@@ -21,9 +21,23 @@
             </div>
             <div class="btns">
                 <div class="upanddown">
-                    <button (click)="up( Product.id )">+</button>
-                    <input id="{{Product.id}}" type="number" value="1">
-                    <button (click)="down(Product.id)">-</button>
+                    <!-- <button (click)="up( Product.id )">+</button>
+                    <input id="{{Product.id}}" type="text" value="1">
+                    <button (click)="down(Product.id)">-</button> -->
+    
+                    <select id="{{Product.id}}" style="width:311px; height: 26px; text-align: center;">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                      </select>
+    
                 </div>
                 <button (click)="addToCart(Product.id)" class="addtocart">Add to cart</button>
             </div>

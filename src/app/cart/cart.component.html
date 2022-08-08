@@ -15,7 +15,7 @@
                 <div class="upanddown">
                     amount
                     <button (click)="up( product.id )">+</button>
-                    <input id="{{product.id}}" type="number" value="{{product.quantity}}">
+                    <input id="{{product.id}}" type="number" value="{{product.quantity}}" (change)="onamount(product.id)" >
                     <button (click)="down(product.id)">-</button>
                 </div>
             </div>
@@ -42,12 +42,12 @@
             <div *ngIf="firstName.errors?.['minlength']">min letter 4</div>
         </div>
         <div>
-            <input type="number" name="number" required minlength="14" [(ngModel)]="number" #num="ngModel" placeholder="Number Cart">
+            <input type="text" name="number" required minlength="14" [(ngModel)]="number" #num="ngModel" placeholder="Number Cart">
             <div *ngIf="num.errors?.['required']">Number is required</div>
             <div *ngIf="num.errors?.['minlength']">card number 14</div>
         </div>
 
-        <button type="submit" [disabled]="form.invalid">Submit</button>
+        <button type="submit" [disabled]="form.invalid  ">Submit</button>
     </form>
 
 </div>

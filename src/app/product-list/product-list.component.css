@@ -59,7 +59,7 @@
         height: 30px;
         border: 1px solid #ccc;
         border-radius: 5px;
-        background-color: #fff;
+        background-color: rgb(243 148 6 / 30%);
         margin-right: 10px;
         cursor: pointer;
     }
@@ -67,8 +67,12 @@
     .btns input {
         width: 200px;
         height: 30px;
+        text-align: center;
+        font-weight: bolder;
         border: 1px solid #ccc;
         border-radius: 5px;
+        font-weight: bolder;
+        font-size: 17px;    
         background-color: #fff;
         margin-right: 10px;
     }
@@ -76,6 +80,7 @@
     .upanddown {
         display: flex;
         justify-content: space-between;
+        margin-bottom: 11px;
     }
 
     .btns .addtocart {

@@ -37,7 +37,7 @@ export class CartComponent implements OnInit {
 
 
 
-      this.projucts.forEach((o: { id: string ,quantity:string }) => {
+      this.projucts.forEach((o: { id: string, quantity: string }) => {
         if (o.id === id) {
           o.quantity = (value + 1).toString();
           console.log(o);
@@ -64,20 +64,53 @@ export class CartComponent implements OnInit {
 
 
       // remove item from projucts array 
-      if (value == 1) {
-        this.projucts = this.projucts.filter((o:any) => o.id != id);
+      if (value <= 1) {
+        this.projucts = this.projucts.filter((o: any) => o.id != id);
         localStorage.setItem("product", JSON.stringify(this.projucts));
       }
 
-      this.projucts.forEach((o: { id: string ,quantity:string }) => {
+      this.projucts.forEach((o: { id: string, quantity: string }) => {
         if (o.id === id) {
           o.quantity = (value - 1).toString();
           console.log(o);
-          
+
         }
       });
-      
 
+
+
+    }
+    if (total != null) {
+
+      total.innerHTML = this.getTotal().toString();
+    }
+  }
+
+
+  onamount(id: string) {
+    // 👇️ const input: HTMLInputElement | null
+    const input = document.getElementById(id) as HTMLInputElement | null;
+    const total = document.getElementById('total') as HTMLInputElement | null;
+    console.log(id);
+
+    if (input != null) {
+      const value = parseInt(input.value, 10);
+      input.value = (value - 1).toString();
+
+
+      // remove item from projucts array 
+      if (value <= 1) {
+        this.projucts = this.projucts.filter((o: any) => o.id != id);
+        localStorage.setItem("product", JSON.stringify(this.projucts));
+      }
+
+      this.projucts.forEach((o: { id: string, quantity: string }) => {
+        if (o.id === id) {
+          o.quantity = (value - 1).toString();
+          console.log(o);
+
+        }
+      });
 
     }
     if (total != null) {
@@ -107,15 +140,15 @@ export class CartComponent implements OnInit {
   lastName: string = '';
   number: string = '';
   blogTitle: string = 'My First Blog';
-  blogContent: string = ''; 
+  blogContent: string = '';
   public: boolean = false;
 
   username: string | undefined;
   onSubmit(): void {
-    alert(`${this.first} has successfully signed in!`);
+    alert(`${this.first} has successfully in!`);
     // this.router.navigate by this.router.navigate(['/']);
     this.router.navigate([`/confirmation/${this.first}/${this.last}`]);
-  
+
 
   }
 
