@@ -149,8 +149,6 @@ export class CartComponent implements OnInit {
 
   username: string | undefined;
   onSubmit(): void {
-    alert(`${this.first} has successfully in!`);
-    // this.router.navigate by this.router.navigate(['/']);
     this.router.navigate([`/confirmation/${this.first}/${this.last}`]);
 
 
