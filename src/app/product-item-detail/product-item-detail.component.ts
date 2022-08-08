@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CartService } from '../services/cart.service';
 import { ProductService } from '../services/product.service';
 
 @Component({
@@ -23,13 +24,15 @@ export class ProductItemDetailComponent implements OnInit {
 
 
   @Input() Product: any | undefined;
-  @Input() ProductApi: any = JSON.parse(localStorage.getItem("product") || '[{}]');
+  // @Input() ProductApi: any = JSON.parse(localStorage.getItem("product") || '[{}]');
+  @Input() ProductApi: any = this.CartService.ProductApi;
   @Output() addToCartEvent = new EventEmitter();
 
   @Input() x: number = 1;
   myid: number | undefined;
   constructor(
     private route: ActivatedRoute,
+    private CartService: CartService,
     private ProductService: ProductService) { }
 
   ngOnInit(): void {
@@ -91,7 +94,8 @@ export class ProductItemDetailComponent implements OnInit {
     console.log(this.Product[id]);
 
     // if is not in cart add to cart else update the quantity
-    localStorage.setItem("product", JSON.stringify(this.ProductApi));
+    // localStorage.setItem("product", JSON.stringify(this.ProductApi));
+    this.CartService.ProductApi = this.ProductApi;
     console.log(this.ProductApi);
 
 

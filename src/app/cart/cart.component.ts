@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -8,14 +9,15 @@ import { Router } from '@angular/router';
 })
 export class CartComponent implements OnInit {
   @Input() projucts: any | undefined;
-  @Input() ProductApi: any = JSON.parse(localStorage.getItem("product") || '{}');
+  // @Input() ProductApi: any = JSON.parse(localStorage.getItem("product") || '{}');
+  @Input() ProductApi: any = this.CartService.ProductApi;
 
+  constructor(private router: Router,private CartService:CartService) { }
 
-  constructor(private router: Router) {
-  }
 
   ngOnInit(): void {
-    this.projucts = JSON.parse(localStorage.getItem("product") || '{}');
+    // this.projucts = JSON.parse(localStorage.getItem("product") || '{}');
+    this.projucts = this.CartService.ProductApi;
     // type 'object'. NgFor only supports binding to Iterables, such as Arrays
     this.projucts = Object.values(this.projucts);
 
@@ -60,18 +62,19 @@ export class CartComponent implements OnInit {
 
     if (input != null) {
       const value = parseInt(input.value, 10);
-      input.value = (value - 1).toString();
+      input.value = (value - 2).toString();
 
 
       // remove item from projucts array 
-      if (value <= 1) {
+      if (value <= 0) {
         this.projucts = this.projucts.filter((o: any) => o.id != id);
-        localStorage.setItem("product", JSON.stringify(this.projucts));
+        // localStorage.setItem("product", JSON.stringify(this.projucts));
+        this.CartService.ProductApi = this.projucts;
       }
 
       this.projucts.forEach((o: { id: string, quantity: string }) => {
         if (o.id === id) {
-          o.quantity = (value - 1).toString();
+          o.quantity = (value - 2).toString();
           console.log(o);
 
         }
@@ -95,18 +98,19 @@ export class CartComponent implements OnInit {
 
     if (input != null) {
       const value = parseInt(input.value, 10);
-      input.value = (value - 1).toString();
+      input.value = (value - 0).toString();
 
 
       // remove item from projucts array 
-      if (value <= 1) {
+      if (value <= 0) {
         this.projucts = this.projucts.filter((o: any) => o.id != id);
-        localStorage.setItem("product", JSON.stringify(this.projucts));
+        // localStorage.setItem("product", JSON.stringify(this.projucts));
+        this.CartService.ProductApi = this.projucts;
       }
 
       this.projucts.forEach((o: { id: string, quantity: string }) => {
         if (o.id === id) {
-          o.quantity = (value - 1).toString();
+          o.quantity = (value - 0).toString();
           console.log(o);
 
         }

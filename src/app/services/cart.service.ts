@@ -5,8 +5,10 @@ import { ProductService } from '../services/product.service';
   providedIn: 'root'
 })
 export class CartService {
-
+  @Input() ProductApi: any = [];
+  
   constructor() { }
+
  
   addToCart(id: number,ProductApi: any,Product: any) {
     const input = document.getElementById('' + id) as HTMLInputElement | null;
@@ -25,11 +27,11 @@ export class CartService {
 
 
     }
-    console.log(Product[id]);
 
     // if is not in cart add to cart else update the quantity
-    localStorage.setItem("product", JSON.stringify(ProductApi));
-    console.log(ProductApi);
+    // localStorage.setItem("product", JSON.stringify(ProductApi));
+    this.ProductApi = ProductApi;
+    console.log(ProductApi, "ProductApi");
 
 
   }

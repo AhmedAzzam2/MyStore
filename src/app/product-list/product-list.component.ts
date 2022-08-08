@@ -12,7 +12,8 @@ export class ProductListComponent implements OnInit {
 
   // Product: any[];
   @Input() Product: any | undefined;
-  @Input() ProductApi: any = JSON.parse(localStorage.getItem("product") || '[{}]');
+  // @Input() ProductApi: any = JSON.parse(localStorage.getItem("product") || '[{}]');
+  @Input() ProductApi: any = this.CartService.ProductApi;
 
   @Input() quantity: number = 1;
   constructor(private ProductService: ProductService,private CartService:CartService) { }
@@ -28,6 +29,7 @@ export class ProductListComponent implements OnInit {
     this.ProductService.getProduct().subscribe(data => {
       this.Product = data;
     });
+console.log(this.CartService.ProductApi, "Product");
 
 
   }
