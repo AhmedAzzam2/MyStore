@@ -25,10 +25,9 @@ export class CartService {
       if (check == undefined) {
       ProductApi.push(g);
       alert('Add to cart success');
-      
+
       }
       else{
-        alert('Product is already in cart');
         console.log('Product is already in cart');
         
       }

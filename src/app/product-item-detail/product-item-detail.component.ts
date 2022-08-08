@@ -77,7 +77,6 @@ export class ProductItemDetailComponent implements OnInit {
       this.ProductApi.push(g);
       }
       else{
-        alert('Product is already in cart');
         console.log('Product is already in cart');
       }
       // this.ProductApi = this.ProductApi.filter((ele:any) => Object.keys(ele).length > 0)

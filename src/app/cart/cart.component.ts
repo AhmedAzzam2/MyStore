@@ -151,7 +151,6 @@ export class CartComponent implements OnInit {
   onSubmit(): void {
     this.router.navigate([`/confirmation/${this.first}/${this.last}`]);
 
-
   }
 
 }
