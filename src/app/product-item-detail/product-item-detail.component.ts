@@ -75,6 +75,7 @@ export class ProductItemDetailComponent implements OnInit {
       let check = this.ProductApi.find((o: any) => o.id == id)
       if (check == undefined) {
       this.ProductApi.push(g);
+      alert('Add to cart success');
       }
       else{
         console.log('Product is already in cart');
