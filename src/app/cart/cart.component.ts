@@ -62,7 +62,7 @@ export class CartComponent implements OnInit {
 
     if (input != null) {
       const value = parseInt(input.value, 10);
-      input.value = (value - 2).toString();
+      input.value = (value - 1).toString();
 
 
       // remove item from projucts array 
@@ -74,7 +74,7 @@ export class CartComponent implements OnInit {
 
       this.projucts.forEach((o: { id: string, quantity: string }) => {
         if (o.id === id) {
-          o.quantity = (value - 2).toString();
+          o.quantity = (value - 1).toString();
           console.log(o);
 
         }

@@ -14,9 +14,9 @@
             <div class="btns">
                 <div class="upanddown">
                     amount
-                    <button (click)="up( product.id )">+</button>
+                    <!-- <button (click)="up( product.id )">+</button> -->
                     <input id="{{product.id}}" type="number" value="{{product.quantity}}" (change)="onamount(product.id)" >
-                    <button (click)="down(product.id)">-</button>
+                    <!-- <button (click)="down(product.id)">-</button> -->
                 </div>
             </div>
         </div>
@@ -52,10 +52,10 @@
 
 </div>
 
-<!-- <div *ngIf="projucts.length == 0" class="box">
+<div *ngIf="projucts.length == 0" class="box">
 
     <div class="empty">
         <h2>Your cart is empty</h2>
         <p>You have no items in your cart. To buy one or more items, click on the "Add to cart" button next to the item.</p>
     </div>
-</div> -->
+</div>

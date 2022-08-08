@@ -6,25 +6,33 @@ import { ProductService } from '../services/product.service';
 })
 export class CartService {
   @Input() ProductApi: any = [];
-  
   constructor() { }
-
  
   addToCart(id: number,ProductApi: any,Product: any) {
     const input = document.getElementById('' + id) as HTMLInputElement | null;
 
     if (input != null) {
 
-      alert('Add to cart success');
       let g = Product.find((o: any) => o.id == id)
       // add quantity object to g 
       console.log(g, "g");
+      // alert(g.name+'Add to cart success');
 
       g.quantity = input.value; // add quantity to g[0]
-      ProductApi = ProductApi.filter((o: any) => o.id != id) ;
+      // ProductApi = ProductApi.filter((o: any) => o.id != id) ;
+      // check if product is already in cart 
+      let check = ProductApi.find((o: any) => o.id == id)
+      if (check == undefined) {
       ProductApi.push(g);
-      ProductApi = ProductApi.filter((ele:any) => Object.keys(ele).length > 0)
-
+      alert('Add to cart success');
+      
+      }
+      else{
+        alert('Product is already in cart');
+        console.log('Product is already in cart');
+        
+      }
+      // ProductApi = ProductApi.filter((ele:any) => Object.keys(ele).length > 0)
 
     }
 

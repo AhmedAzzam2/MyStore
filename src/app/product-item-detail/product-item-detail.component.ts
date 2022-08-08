@@ -10,19 +10,6 @@ import { ProductService } from '../services/product.service';
 })
 export class ProductItemDetailComponent implements OnInit {
 
-  // get id from path link 
-  // params.get('id'); 
-
-  // Product: any[];
-  // {
-  //   "id": 4,
-  //   "name": "Glasses",
-  //   "price": 129.99,
-  //   "url": "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-  //   "description": "Now you can see!"
-  // },
-
-
   @Input() Product: any | undefined;
   // @Input() ProductApi: any = JSON.parse(localStorage.getItem("product") || '[{}]');
   @Input() ProductApi: any = this.CartService.ProductApi;
@@ -78,15 +65,22 @@ export class ProductItemDetailComponent implements OnInit {
 
     if (input != null) {
 
-      alert('Add to cart success');
       let g = this.Product;
       // add quantity object to g 
       console.log(g, "g");
 
       g.quantity = input.value; // add quantity to g[0]
-      this.ProductApi = this.ProductApi.filter((o: any) => o.id != id);
+      // this.ProductApi = this.ProductApi.filter((o: any) => o.id != id);
+      //       // check if product is already in cart 
+      let check = this.ProductApi.find((o: any) => o.id == id)
+      if (check == undefined) {
       this.ProductApi.push(g);
-      this.ProductApi = this.ProductApi.filter((ele:any) => Object.keys(ele).length > 0)
+      }
+      else{
+        alert('Product is already in cart');
+        console.log('Product is already in cart');
+      }
+      // this.ProductApi = this.ProductApi.filter((ele:any) => Object.keys(ele).length > 0)
 
 
 
